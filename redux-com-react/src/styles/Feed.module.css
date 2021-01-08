@@ -1,0 +1,25 @@
+.feedItem {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  justify-items: start;
+  align-items: center;
+  gap: 1rem 1.5rem;
+}
+
+.feedItem img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.feedText {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.feedViews {
+  justify-self: end;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #888;
+}

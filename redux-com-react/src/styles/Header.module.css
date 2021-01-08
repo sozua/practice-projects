@@ -1,0 +1,9 @@
+.headerWrapper {
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+}
+
+.headerWrapper h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}

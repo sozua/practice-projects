@@ -1,54 +1,30 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { somar } from "./store/contador";
-import { autoLogin, login } from "./store/login";
+import { autoLogin } from "./store/login";
+import "./styles/global.css";
+import Form from "./component/Form";
+import Feed from "./component/Feed";
 
 function App() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const state = useSelector((state) => state);
+  const [loading, setLoading] = useState(true);
+  const [logged, setLogged] = useState(false);
   const dispatch = useDispatch();
-  const userData = state.login.user?.data;
+  const state = useSelector((state) => state?.login);
 
   useEffect(() => {
     dispatch(autoLogin());
   }, [dispatch]);
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  useEffect(() => {
+    const userLogged = state.user.data;
+    const loading = state.user.loading;
+    setLogged(userLogged);
+    setLoading(loading);
+  }, [state]);
 
-    dispatch(login({ username, password }));
-  }
+  if (loading) return <>Carregando...</>;
 
-  return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username" style={{ display: "block" }}>
-          Usuário
-        </label>
-        <input
-          id="username"
-          type="text"
-          value={username}
-          onChange={({ target }) => setUsername(target.value)}
-        />
-        <label htmlFor="password" style={{ display: "block" }}>
-          Senha
-        </label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={({ target }) => setPassword(target.value)}
-        />
-        <button type="submit">Enviar</button> <br />
-      </form>
-      <button onClick={() => dispatch(somar(5))}>Somar</button>
-      <h2>
-        {userData?.username} | {userData?.email}
-      </h2>
-    </>
-  );
+  return <>{logged ? <Feed /> : <Form />}</>;
 }
 
 export default App;
