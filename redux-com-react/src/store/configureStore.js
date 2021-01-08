@@ -7,9 +7,10 @@ import contador from "./contador";
 import modal from "./modal";
 import login from "./login";
 // import logger from "./middlewares/logger";
+import localStorage from "./middlewares/localStorage";
 
 const defaultMiddleware = getDefaultMiddleware();
-const middleware = [...defaultMiddleware];
+const middleware = [...defaultMiddleware, localStorage];
 
 const combinedReducers = combineReducers({ contador, modal, login });
 

@@ -16,9 +16,15 @@ const slicer = createSlice({
     reduzir(state) {
       state.total--;
     },
+    somar: {
+      reducer: (state, action) => {
+        return state + action.payload;
+      },
+      prepare: (payload) => ({ payload, meta: "Somou" }),
+    },
   },
 });
 
-export const { incrementar, reduzir } = slicer.actions;
+export const { incrementar, reduzir, somar } = slicer.actions;
 
 export default slicer.reducer;
