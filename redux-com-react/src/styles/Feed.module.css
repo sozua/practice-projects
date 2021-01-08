@@ -4,11 +4,14 @@
   justify-items: start;
   align-items: center;
   gap: 1rem 1.5rem;
+  margin: 1rem 0;
 }
 
 .feedItem img {
-  width: 100%;
-  height: auto;
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: cover;
+  justify-self: center;
   border-radius: 0.5rem;
 }
 

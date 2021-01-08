@@ -6,6 +6,7 @@ import Form from "./component/Form";
 import Feed from "./component/Feed";
 
 function App() {
+  const [pages, setPages] = useState([1]);
   const [loading, setLoading] = useState(true);
   const [logged, setLogged] = useState(false);
   const dispatch = useDispatch();
@@ -23,8 +24,26 @@ function App() {
   }, [state]);
 
   if (loading) return <>Carregando...</>;
+  if (logged)
+    return (
+      <>
+        {pages.map((page) => (
+          <Feed page={page} setPages={setPages} key={`Página - ${page}`} />
+        ))}
+        <button
+          className="loadMore"
+          onClick={() => setPages((pages) => [...pages, pages.length + 1])}
+        >
+          <span>+</span>
+        </button>
+      </>
+    );
 
-  return <>{logged ? <Feed /> : <Form />}</>;
+  return (
+    <>
+      <Form />
+    </>
+  );
 }
 
 export default App;

@@ -28,6 +28,11 @@ const token = createAsyncSlice({
         };
       },
     },
+    removeToken(state) {
+      state.loading = false;
+      state.data = null;
+      state.error = null;
+    },
   },
   fetchConfig: (payload) => ({
     url: "https://dogsapi.origamid.dev/json/jwt-auth/v1/token",
@@ -52,10 +57,20 @@ const user = createAsyncSlice({
       },
     },
   }),
+  reducers: {
+    removeUser(state) {
+      state.loading = false;
+      state.data = null;
+      state.error = null;
+    },
+  },
 });
 
 const fetchToken = token.asyncAction;
 const fetchUser = user.asyncAction;
+
+const { removeToken } = token.actions;
+const { removeUser } = user.actions;
 
 const combinedReducers = combineReducers({
   token: token.reducer,
@@ -67,6 +82,12 @@ export const login = (user) => async (dispatch) => {
     const { payload } = await dispatch(fetchToken(user));
     if (payload.token !== undefined) await dispatch(fetchUser(payload.token));
   } catch {}
+};
+
+export const loggout = () => (dispatch) => {
+  dispatch(removeToken());
+  dispatch(removeUser());
+  window.localStorage.setItem("token", null);
 };
 
 export const autoLogin = () => async (dispatch, getState) => {

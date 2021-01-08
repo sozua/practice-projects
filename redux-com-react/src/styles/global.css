@@ -45,6 +45,40 @@ button {
 }
 
 main {
+  position: relative;
   width: 480px;
   margin: 4rem auto 0 auto;
+}
+
+.loadMore {
+  transition: 0.15s ease;
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  color: #fff;
+  background: #000;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.loadMore > span {
+  transform: translateY(-1px);
+}
+
+.loadMore:hover,
+.loadMore:focus {
+  background: #333;
+  outline: none;
+}
+
+.loadMore:active {
+  background: #555;
+  outline: none;
 }
