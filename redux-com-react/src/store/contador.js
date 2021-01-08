@@ -1,17 +1,24 @@
-import { createAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const incrementar = createAction("INCREMENTAR");
-export const reduzir = createAction("REDUZIR");
+const slicer = createSlice({
+  name: "contador",
+  initialState: {
+    total: 0,
+  },
+  reducers: {
+    incrementar(state) {
+      // Dentro do createSlice já vem com o immer, ou seja, é possível mutar o estado diretamente
+      state.total++;
 
-function contador(state = 0, action) {
-  switch (action.type) {
-    case incrementar.type:
-      return state + 1;
-    case reduzir.type:
-      return state - 1;
-    default:
-      return state;
-  }
-}
+      // Mas, se for preferível, pode ser feito da forma tradicional (com o estado imutável)
+      // return { ...state, total: state.total + 1 };
+    },
+    reduzir(state) {
+      state.total--;
+    },
+  },
+});
 
-export default contador;
+export const { incrementar, reduzir } = slicer.actions;
+
+export default slicer.reducer;
