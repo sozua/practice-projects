@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import date from "./date";
+import cache from "./cache";
 
-const combinedReducers = combineReducers({ date });
+const combinedReducers = combineReducers({ cache });
 
 const store = configureStore({ reducer: combinedReducers });
 
