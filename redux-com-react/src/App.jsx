@@ -1,14 +1,13 @@
-import { useState } from "react";
-import Photos from "./components/Photos";
+import Filter from "./components/Filter";
+import Products from "./components/Products";
+
+import "./styles/global.css";
 
 function App() {
-  const [toggle, setToggle] = useState(true);
   return (
     <>
-      <button onClick={() => setToggle((oldToggle) => !oldToggle)}>
-        Toggle
-      </button>
-      {toggle && <Photos />}
+      <Filter />
+      <Products />
     </>
   );
 }

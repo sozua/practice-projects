@@ -1,10 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700&display=swap");
 
-html {
-  box-sizing: border-box;
-  font-size: 16px;
-}
-
 *,
 *:before,
 *:after {
@@ -36,6 +31,14 @@ img {
   height: auto;
 }
 
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  max-width: 640px;
+  margin: 4rem auto 0 auto;
+}
+
 body,
 input,
 textarea,
@@ -44,8 +47,57 @@ button {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-main {
-  position: relative;
-  width: 480px;
-  margin: 4rem auto 0 auto;
+table,
+input,
+label {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+td {
+  padding: 0.3rem 1rem;
+}
+
+th {
+  padding-right: 1rem;
+  text-align: left;
+  padding: 0rem 1rem;
+}
+
+tr:nth-child(even) {
+  background: #eee;
+}
+
+input[type="number"] {
+  display: block;
+  margin-top: 0.25rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.2rem;
+  border: 2px solid #444;
+  color: #444;
+  border-radius: 4px;
+}
+
+input[type="checkbox"] {
+  width: initial;
+}
+
+.checkbox-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-content: start;
+}
+
+b {
+  grid-column: 1 / -1;
+  padding: 1rem 0;
+}
+
+label {
+  text-transform: capitalize;
 }

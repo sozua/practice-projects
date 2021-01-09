@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import cache from "./cache";
+import products from "./products";
 
-const combinedReducers = combineReducers({ cache });
+const combinedReducers = combineReducers({ products });
 
 const store = configureStore({ reducer: combinedReducers });
 
