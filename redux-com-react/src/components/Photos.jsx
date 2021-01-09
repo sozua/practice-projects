@@ -1,15 +1,22 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPhotos } from "../store/cache";
+import { fetchPhotos, getOverFiveKg } from "../store/cache";
 
 const Photos = () => {
-  const { data } = useSelector((state) => state.cache);
+  const data = useSelector(getOverFiveKg);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPhotos());
   }, [dispatch]);
   return (
-    <ol>{data && data.map((item) => <li key={item.id}>{item.title}</li>)}</ol>
+    <ol>
+      {data &&
+        data.map((photo) => (
+          <li key={photo.id}>
+            {photo.title} | {photo.peso}
+          </li>
+        ))}
+    </ol>
   );
 };
 
