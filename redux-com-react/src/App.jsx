@@ -6,44 +6,20 @@ import Form from "./component/Form";
 import Feed from "./component/Feed";
 
 function App() {
-  const [pages, setPages] = useState([1]);
-  const [loading, setLoading] = useState(true);
-  const [logged, setLogged] = useState(false);
   const dispatch = useDispatch();
-  const state = useSelector((state) => state?.login);
+  const { loading, data } = useSelector((state) => state.login?.user);
 
   useEffect(() => {
     dispatch(autoLogin());
   }, [dispatch]);
 
-  useEffect(() => {
-    const userLogged = state.user.data;
-    const loading = state.user.loading;
-    setLogged(userLogged);
-    setLoading(loading);
-  }, [state]);
-
   if (loading) return <>Carregando...</>;
-  if (logged)
-    return (
-      <>
-        {pages.map((page) => (
-          <Feed page={page} setPages={setPages} key={`Página - ${page}`} />
-        ))}
-        <button
-          className="loadMore"
-          onClick={() => setPages((pages) => [...pages, pages.length + 1])}
-        >
-          <span>+</span>
-        </button>
-      </>
-    );
 
-  return (
-    <>
-      <Form />
-    </>
-  );
+  if (data) {
+    return <Feed />;
+  } else {
+    return <Form />;
+  }
 }
 
 export default App;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/login";
 import styles from "../styles/Form.module.css";
 
@@ -19,31 +19,29 @@ const Form = () => {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className={styles.formWrapper}>
-        <div>
-          <label htmlFor="username">Usuário</label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            value={username}
-            onChange={({ target }) => setUsername(target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Senha</label>
-          <input
-            type="text"
-            name="password"
-            id="password"
-            value={password}
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
-        <button type="submit">Fazer login</button>
-      </form>
-    </>
+    <form onSubmit={handleSubmit} className={styles.formWrapper}>
+      <div>
+        <label htmlFor="username">Usuário</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          value={username}
+          onChange={({ target }) => setUsername(target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="password">Senha</label>
+        <input
+          type="text"
+          name="password"
+          id="password"
+          value={password}
+          onChange={({ target }) => setPassword(target.value)}
+        />
+      </div>
+      <button type="submit">Fazer login</button>
+    </form>
   );
 };
 
