@@ -1,25 +1,37 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { autoLogin } from "./store/login";
-import "./styles/global.css";
-import Form from "./component/Form";
-import Feed from "./component/Feed";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { adicionarDatas } from "./store/date";
 
 function App() {
+  const [partida, setPartida] = useState("");
+  const [retorno, setRetorno] = useState("");
   const dispatch = useDispatch();
-  const { loading, data } = useSelector((state) => state.login?.user);
 
-  useEffect(() => {
-    dispatch(autoLogin());
-  }, [dispatch]);
-
-  if (loading) return <>Carregando...</>;
-
-  if (data) {
-    return <Feed />;
-  } else {
-    return <Form />;
+  function onSubmit(event) {
+    event.preventDefault();
+    dispatch(adicionarDatas({ partida, retorno }));
   }
+
+  return (
+    <>
+      <h2>Formulário com redux</h2>
+      <form onSubmit={onSubmit}>
+        <input
+          type="date"
+          placeholder="Partida"
+          value={partida}
+          onChange={({ target }) => setPartida(target.value)}
+        />
+        <input
+          type="date"
+          placeholder="Retorno"
+          value={retorno}
+          onChange={({ target }) => setRetorno(target.value)}
+        />
+        <button type="submit">Enviar</button>
+      </form>
+    </>
+  );
 }
 
 export default App;
