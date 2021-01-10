@@ -5,6 +5,7 @@
     ".gitignore": false,
     "README.md": true,
     "public": true,
-    "package.json": true
+    "package.json": true,
+    "old-project/": true
   }
 }
