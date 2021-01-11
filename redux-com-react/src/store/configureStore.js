@@ -9,8 +9,16 @@ import token from "./token";
 import user from "./user";
 import feed from "./feed";
 import ui from "./ui";
+import userPhotoPost from "./userPhotoPost";
 
-const reducer = combineReducers({ photo, token, user, feed, ui });
+const reducer = combineReducers({
+  photo,
+  token,
+  user,
+  feed,
+  ui,
+  userPhotoPost,
+});
 const middleware = [...getDefaultMiddleware()];
 const store = configureStore({ reducer, middleware });
 
