@@ -10,10 +10,12 @@ import styles from "./Login.module.css";
 import NotFound from "../NotFound";
 import Head from "../../components/Head";
 import { useSelector } from "react-redux";
+import Loading from "../../components/Loading";
 
 const Login = () => {
-  const { data } = useSelector((state) => state.user);
+  const { data, loading } = useSelector((state) => state.user);
 
+  if (loading) return <Loading />;
   if (data) {
     return <Navigate to="/conta" />;
   } else {

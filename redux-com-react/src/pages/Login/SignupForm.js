@@ -3,16 +3,17 @@ import Button from "../../components/Forms/Button";
 import Error from "../../components/Error";
 import useForm from "../../hooks/useForm";
 import { USER_POST } from "../../api";
-import { useContext } from "react";
-import { UserContext } from "../../UserContext";
 import useFetch from "../../hooks/useFetch";
+import { userLogin } from "../../store/user";
+import { useDispatch } from "react-redux";
 
 const SignupForm = () => {
   const username = useForm();
   const email = useForm("email");
   const password = useForm();
 
-  const { userLogin } = useContext(UserContext);
+  const dispatch = useDispatch();
+
   const { loading, error, request } = useFetch();
 
   async function handleSubmit(event) {
@@ -23,7 +24,10 @@ const SignupForm = () => {
       password: password.value,
     });
     const { response } = await request(url, options);
-    if (response.ok) userLogin(username.value, password.value);
+    if (response.ok)
+      dispatch(
+        userLogin({ username: username.value, password: password.value })
+      );
   }
 
   return (
