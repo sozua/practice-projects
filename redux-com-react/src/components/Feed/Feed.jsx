@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import FeedModal from "./FeedModal";
 import FeedPhotos from "./FeedPhotos";
@@ -9,7 +9,6 @@ import Loading from "../Loading";
 import Error from "../Error";
 
 const Feed = ({ user }) => {
-  const [modalPhoto, setModalPhoto] = useState(null);
   const { error, loading, list, infinite } = useSelector((state) => state.feed);
   const dispatch = useDispatch();
 
@@ -48,10 +47,8 @@ const Feed = ({ user }) => {
 
   return (
     <div>
-      {modalPhoto && (
-        <FeedModal photo={modalPhoto} setModalPhoto={setModalPhoto} />
-      )}
-      {list.length > 0 && <FeedPhotos setModalPhoto={setModalPhoto} />}
+      <FeedModal />
+      {list.length > 0 && <FeedPhotos />}
       {loading && <Loading />}
       {error && <Error error={error} />}
       {!infinite && (
