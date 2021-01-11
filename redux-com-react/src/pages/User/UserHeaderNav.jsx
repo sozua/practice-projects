@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../UserContext";
+import React, { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 import { ReactComponent as MinhasFotosSvg } from "../../assets/feed.svg";
@@ -9,9 +8,11 @@ import { ReactComponent as SairSvg } from "../../assets/sair.svg";
 
 import styles from "./UserHeaderNav.module.css";
 import useMedia from "../../hooks/useMedia";
+import { useDispatch } from "react-redux";
+import { userLoggout } from "../../store/user";
 
 const UserHeaderNav = () => {
-  const { userLoggout } = useContext(UserContext);
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
 
   const mobile = useMedia("(max-width: 40rem)");
@@ -49,7 +50,7 @@ const UserHeaderNav = () => {
           <AdicionarFotoSvg />
           {mobile && "Adicionar Foto"}
         </NavLink>
-        <button onClick={userLoggout}>
+        <button onClick={() => dispatch(userLoggout())}>
           <SairSvg />
           {mobile && "Sair"}
         </button>

@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { UserContext } from "../../UserContext";
 
 import LoginForm from "./LoginForm";
 import PasswordLost from "./PasswordLost";
@@ -10,11 +9,14 @@ import SignupForm from "./SignupForm";
 import styles from "./Login.module.css";
 import NotFound from "../NotFound";
 import Head from "../../components/Head";
+import { useSelector } from "react-redux";
+import Loading from "../../components/Loading";
 
 const Login = () => {
-  const { logged } = useContext(UserContext);
+  const { data, loading } = useSelector((state) => state.user);
 
-  if (logged) {
+  if (loading) return <Loading />;
+  if (data) {
     return <Navigate to="/conta" />;
   } else {
     return (

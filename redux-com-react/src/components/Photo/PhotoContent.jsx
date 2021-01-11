@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Image from "../Image";
 
@@ -6,7 +7,8 @@ import PhotoComments from "./PhotoComments";
 
 import styles from "./PhotoContent.module.css";
 
-const PhotoContent = ({ data, single }) => {
+const PhotoContent = ({ single }) => {
+  const { data } = useSelector((state) => state.photo);
   const { photo, comments } = data;
 
   return (
