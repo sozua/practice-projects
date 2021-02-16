@@ -1,0 +1,6 @@
+[submodule "contruindo-apis-rest-com-nodejs"]
+	path = contruindo-apis-rest-com-nodejs
+	url = https://github.com/sozua/contruindo-apis-rest-com-nodejs.git
+[submodule "introducao-cs"]
+	path = introducao-cs
+	url = https://github.com/sozua/introducao-cs.git
